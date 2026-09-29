@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Travel Survival Guide</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f7f2ea;
+color:#263238;
+line-height:1.6
+}
+nav{
+position:sticky;
+top:0;
+z-index:10;
+background:#fffdf9ee;
+backdrop-filter:blur(10px);
+border-bottom:1px solid #ddd3c7;
+padding:10px;
+display:flex;
+gap:8px;
+justify-content:center;
+flex-wrap:wrap
+}
+nav a{
+color:#263238;
+text-decoration:none;
+padding:8px 12px;
+border-radius:20px;
+font-size:14px
+}
+nav a:hover{background:#e8dfd4}
+
+section{
+max-width:1050px;
+margin:auto;
+padding:70px 22px
+}
+
+.hero{
+min-height:92vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:linear-gradient(135deg,#e9dfd2,#f8f4ed)
+}
+
+.hero h1{
+font-size:clamp(44px,8vw,86px);
+line-height:.95;
+margin:10px 0;
+letter-spacing:-3px
+}
+
+.hero h2{
+font-size:clamp(18px,3vw,28px);
+font-weight:400;
+letter-spacing:2px
+}
+
+.kicker{
+letter-spacing:3px;
+text-transform:uppercase;
+font-size:12px;
+font-weight:bold
+}
+
+.route{
+font-size:20px;
+margin:30px 0
+}
+
+.btn{
+display:inline-block;
+padding:12px 20px;
+background:#263238;
+color:white;
+text-decoration:none;
+border-radius:25px;
+margin:5px
+}
+
+h2.title{
+text-align:center;
+font-size:38px;
+margin-bottom:10px
+}
+
+.intro{
+text-align:center;
+max-width:750px;
+margin:0 auto 35px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px
+}
+
+.card{
+background:white;
+border:1px solid #ddd3c7;
+border-radius:18px;
+padding:22px;
+box-shadow:0 8px 25px #0000000b
+}
+
+.card h3{margin-top:0}
+
+.city h3{font-size:28px}
+
+.photo{
+height:230px;
+border-radius:18px;
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:end;
+padding:18px;
+color:white;
+font-weight:bold;
+font-size:22px;
+text-shadow:0 2px 8px #000
+}
+
+.paris{
+background-image:
+linear-gradient(#0001,#0008),
+url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80')
+}
+
+.rome{
+background-image:
+linear-gradient(#0001,#0008),
+url('https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1200&q=80')
+}
+
+.barcelona{
+background-image:
+linear-gradient(#0001,#0008),
+url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80')
+}
+
+.zurich{
+background-image:
+linear-gradient(#0001,#0008),
+url('https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=1200&q=80')
+}
+
+.city-gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+margin-top:28px
+}
+
+.city-gallery figure{
+margin:0;
+background:#fff;
+border:1px solid #ddd3c7;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 25px #0000000b
+}
+
+.city-gallery img{
+width:100%;
+height:220px;
+display:block;
+object-fit:cover
+}
+
+.city-gallery figcaption{
+padding:12px 15px;
+font-weight:bold
+}
+
+.city-gallery .note{
+font-weight:normal;
+font-size:13px;
+opacity:.72
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:15px;
+overflow:hidden
+}
+
+th,td{
+padding:13px;
+border-bottom:1px solid #e5ddd4;
+text-align:left
+}
+
+th{
+background:#263238;
+color:white
+}
+
+.timeline{
+display:grid;
+gap:15px
+}
+
+.step{
+display:flex;
+gap:18px;
+align-items:center;
+background:white;
+padding:18px;
+border-radius:16px
+}
+
+.num{
+min-width:44px;
+height:44px;
+border-radius:50%;
+background:#263238;
+color:white;
+display:grid;
+place-items:center;
+font-weight:bold
+}
+
+.quote{
+font-size:27px;
+text-align:center;
+font-style:italic;
+max-width:800px;
+margin:35px auto
+}
+
+.team{text-align:center}
+
+.names{
+font-weight:bold;
+font-size:18px
+}
+
+footer{
+text-align:center;
+padding:40px 20px;
+background:#263238;
+color:white
+}
+
+.small{
+font-size:13px;
+opacity:.75
+}
+
+@media(max-width:600px){
+section{padding:50px 16px}
+.hero h1{letter-spacing:-2px}
+h2.title{font-size:31px}
+table{font-size:13px}
+th,td{padding:9px}
+.photo{height:190px}
+.city-gallery{grid-template-columns:1fr}
+.city-gallery img{height:210px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#journey">Our Journey</a>
+<a href="#paris">Paris</a>
+<a href="#rome">Rome</a>
+<a href="#barcelona">Barcelona</a>
+<a href="#zurich">Zurich</a>
+<a href="#guide">Survival Guide</a>
+<a href="#gallery">Gallery</a>
+<a href="#after">After the Journey</a>
+</nav>
+
+<section id="home" class="hero">
+<div>
+
+<div class="kicker">
+Colégio Adventista de Várzea Grande • English Project • 2026
+</div>
+
+<h1>
+TRAVEL<br>SURVIVAL GUIDE
+</h1>
+
+<h2>
+6 FRIENDS. 1 TRIP. MANY ADVENTURES.
+</h2>
+
+<p>
+A guide to airports, hotels, transportation, sightseeing and unexpected problems.
+</p>
+
+<p class="route">
+🇫🇷 Paris → 🇮🇹 Rome → 🇪🇸 Barcelona → 🇨🇭 Zurich
+</p>
+
+<a class="btn" href="#journey">
+Start the journey
+</a>
+
+</div>
+</section>
+
+
+<section id="journey">
+
+<h2 class="title">Our Journey</h2>
+
+<p class="intro">
+Six friends, four cities, and one unforgettable adventure!
+Travel with us through Europe as we discover new places, cultures and everyday challenges.
+</p>
+
+<div class="timeline">
+
+<div class="step">
+<div class="num">1</div>
+<div>
+<b>🇫🇷 Paris</b><br>
+French • Euro (€) • Charles de Gaulle Airport
+</div>
+</div>
+
+<div class="step">
+<div class="num">2</div>
+<div>
+<b>🇮🇹 Rome</b><br>
+Italian • Euro (€) • Fiumicino Airport
+</div>
+</div>
+
+<div class="step">
+<div class="num">3</div>
+<div>
+<b>🇪🇸 Barcelona</b><br>
+Spanish & Catalan • Euro (€)
+</div>
+</div>
+
+<div class="step">
+<div class="num">4</div>
+<div>
+<b>🇨🇭 Zurich</b><br>
+German • Swiss Franc (CHF) • Zurich Airport
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section id="paris">
+
+<h2 class="title">🇫🇷 Paris</h2>
+
+<div class="photo paris">
+The adventure begins.
+</div>
+
+<p>
+The girls arrive at Charles de Gaulle Airport excited to start their European adventure.
+But the trip immediately gives them a little challenge: they are running late for their next flight,
+their hotel room is not ready yet, and one of them gets separated from the group while admiring a shop window.
+</p>
+
+<div class="city-gallery">
+
+<figure>
+<img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=80" alt="Eiffel Tower in Paris">
+<figcaption>
+🗼 Eiffel Tower
+<div class="note">One of the most iconic views of Paris.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=1200&q=80" alt="Louvre Museum in Paris">
+<figcaption>
+🎨 Louvre Museum
+<div class="note">Art, architecture and unforgettable moments.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=80" alt="Seine River in Paris">
+<figcaption>
+🌊 Seine River
+<div class="note">A peaceful view while exploring the city.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80" alt="Paris cafe">
+<figcaption>
+☕ Parisian Café
+<div class="note">A little break between adventures.</div>
+</figcaption>
+</figure>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<b>hurry up</b><br>
+Phrasal Verb — to move quickly.<br>
+<i>They have to hurry up to catch their flight.</i>
+</div>
+
+<div class="card">
+<b>wait for</b><br>
+Prepositional Verb — to stay until someone or something arrives.<br>
+<i>They wait for their hotel room in the lobby.</i>
+</div>
+
+<div class="card">
+<b>get away from</b><br>
+Phrasal-Prepositional Verb — to move away from someone or something.<br>
+<i>One of the girls gets away from the group while looking at a shop window.</i>
+</div>
+
+</div>
+</section>
+
+
+<section id="rome">
+
+<h2 class="title">🇮🇹 Rome</h2>
+
+<div class="photo rome">
+When the city has a story for you.
+</div>
+
+<p>
+After arriving in Rome, the girls try a traditional Italian restaurant and discover that understanding
+a menu in another language can be an adventure of its own. Later, they take a wrong street while searching
+for a store and stop to ask a friendly — and very handsome — local man for directions.
+</p>
+
+<p>
+At the store, the excitement continues until they realize they are running out of money.
+They laugh, check their budget and promise to be a little more careful for the rest of the trip.
+</p>
+
+<div class="city-gallery">
+
+<figure>
+<img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=1200&q=80" alt="Colosseum in Rome">
+<figcaption>
+🏛️ Colosseum
+<div class="note">A walk through ancient Roman history.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1200&q=80" alt="Rome streets">
+<figcaption>
+🚶 Rome Streets
+<div class="note">Getting a little lost can be part of the adventure.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?auto=format&fit=crop&w=1200&q=80" alt="Trevi Fountain Rome">
+<figcaption>
+⛲ Trevi Fountain
+<div class="note">A classic stop in the heart of Rome.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://ak-d.tripcdn.com/images/0351312000nlm90o2572E_C_1000_1000_Q50.jpg_.webp" alt="Restaurant with Colosseum view">
+<figcaption>
+🍝 Italian Restaurant
+<div class="note">Dinner with a view of the Colosseum.</div>
+</figcaption>
+</figure>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<b>figure out</b><br>
+Phrasal Verb — to understand or discover.<br>
+<i>They figure out which dishes they want to order.</i>
+</div>
+
+<div class="card">
+<b>ask for</b><br>
+Prepositional Verb — to request.<br>
+<i>They ask for directions.</i>
+</div>
+
+<div class="card">
+<b>run out of</b><br>
+Phrasal-Prepositional Verb — to have no more of something.<br>
+<i>They realize they are running out of money.</i>
+</div>
+
+</div>
+</section>
+
+
+<section id="barcelona">
+
+<h2 class="title">🇪🇸 Barcelona</h2>
+
+<div class="photo barcelona">
+Music, sunshine and a little detour.
+</div>
+
+<p>
+On their first evening in Barcelona, the girls watch a lively Spanish dance performance.
+The music is so energetic that one of them cannot resist and decides to join in with the dancers for a few seconds.
+Everyone laughs — and the night becomes one of their favorite memories.
+</p>
+
+<p>
+The next day brings sunshine, the beach and a small detour.
+They ask about places to visit nearby, then realize Natália has stopped to take pictures.
+The girls turn around, catch up with her and continue the afternoon together.
+</p>
+
+<div class="city-gallery">
+
+<figure>
+<img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1200&q=80" alt="Barcelona city">
+<figcaption>
+🏙️ Barcelona
+<div class="note">Colorful streets and Mediterranean energy.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1596265371388-43edbaadab94?auto=format&fit=crop&w=1200&q=80" alt="Sagrada Familia Barcelona">
+<figcaption>
+⛪ Sagrada Família
+<div class="note">Gaudí's famous masterpiece.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1583779457094-ab6f6f3a7b20?auto=format&fit=crop&w=1200&q=80" alt="Park Guell Barcelona">
+<figcaption>
+🌈 Park Güell
+<div class="note">Mosaics, curves and incredible views.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Barcelona beach">
+<figcaption>
+🏖️ Beach Day
+<div class="note">Sunshine, photos and a little detour.</div>
+</figcaption>
+</figure>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<b>join in</b><br>
+Phrasal Verb — to participate or take part.<br>
+<i>One of the girls joins in with the dancers.</i>
+</div>
+
+<div class="card">
+<b>ask about</b><br>
+Prepositional Verb — to ask for information about something.<br>
+<i>They ask about places to visit nearby.</i>
+</div>
+
+<div class="card">
+<b>catch up with</b><br>
+Phrasal-Prepositional Verb — to reach someone who is ahead.<br>
+<i>The girls catch up with Natália.</i>
+</div>
+
+</div>
+</section>
+
+
+<section id="zurich">
+
+<h2 class="title">🇨🇭 Zurich</h2>
+
+<div class="photo zurich">
+A slower ending to a busy adventure.
+</div>
+
+<p>
+After several busy days, the girls decide to slow down.
+They take a train toward the mountains, walk through the peaceful landscape and spend time simply talking and taking pictures.
+</p>
+
+<p>
+Later, they find a cozy café and talk about everything they have experienced.
+On their last evening, they sit by the lake, watch the sunset and look back on the journey.
+The little problems they faced have become some of their favorite memories.
+</p>
+
+<div class="city-gallery">
+
+<figure>
+<img src="https://images.unsplash.com/photo-1515488764276-beab7607c1e6?auto=format&fit=crop&w=1200&q=80" alt="Zurich Switzerland">
+<figcaption>
+🏙️ Zurich
+<div class="note">A calm and beautiful final destination.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80" alt="Swiss Alps">
+<figcaption>
+🏔️ Swiss Alps
+<div class="note">Peaceful landscapes after busy days.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1507992781348-310259076fe0?auto=format&fit=crop&w=1200&q=80" alt="Lake Zurich">
+<figcaption>
+🌊 Lake View
+<div class="note">The perfect place to slow down.</div>
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80" alt="European cafe">
+<figcaption>
+☕ Cozy Café
+<div class="note">Talking, laughing and looking back on the journey.</div>
+</figcaption>
+</figure>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<b>slow down</b><br>
+Phrasal Verb — to become less fast.<br>
+<i>They decide to slow down and enjoy the landscape.</i>
+</div>
+
+<div class="card">
+<b>talk about</b><br>
+Prepositional Verb — to discuss something.<br>
+<i>They talk about everything they have experienced.</i>
+</div>
+
+<div class="card">
+<b>look back on</b><br>
+Phrasal-Prepositional Verb — to remember and reflect on the past.<br>
+<i>They look back on the journey.</i>
+</div>
+
+</div>
+</section>
+
+
+<section id="guide">
+
+<h2 class="title">Survival Guide</h2>
+
+<p class="intro">
+Here are the 12 multi-word verbs used throughout our journey.
+</p>
+
+<table>
+
+<tr>
+<th>Verb</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>City</th>
+</tr>
+
+<tr>
+<td>hurry up</td>
+<td>Phrasal</td>
+<td>se apressar</td>
+<td>Paris</td>
+</tr>
+
+<tr>
+<td>wait for</td>
+<td>Prepositional</td>
+<td>esperar por</td>
+<td>Paris</td>
+</tr>
+
+<tr>
+<td>get away from</td>
+<td>Phrasal-Prepositional</td>
+<td>afastar-se de</td>
+<td>Paris</td>
+</tr>
+
+<tr>
+<td>figure out</td>
+<td>Phrasal</td>
+<td>entender / descobrir</td>
+<td>Rome</td>
+</tr>
+
+<tr>
+<td>ask for</td>
+<td>Prepositional</td>
+<td>pedir / solicitar</td>
+<td>Rome</td>
+</tr>
+
+<tr>
+<td>run out of</td>
+<td>Phrasal-Prepositional</td>
+<td>ficar sem / estar acabando</td>
+<td>Rome</td>
+</tr>
+
+<tr>
+<td>join in</td>
+<td>Phrasal</td>
+<td>participar / juntar-se</td>
+<td>Barcelona</td>
+</tr>
+
+<tr>
+<td>ask about</td>
+<td>Prepositional</td>
+<td>perguntar sobre</td>
+<td>Barcelona</td>
+</tr>
+
+<tr>
+<td>catch up with</td>
+<td>Phrasal-Prepositional</td>
+<td>alcançar alguém</td>
+<td>Barcelona</td>
+</tr>
+
+<tr>
+<td>slow down</td>
+<td>Phrasal</td>
+<td>desacelerar</td>
+<td>Zurich</td>
+</tr>
+
+<tr>
+<td>talk about</td>
+<td>Prepositional</td>
+<td>falar sobre</td>
+<td>Zurich</td>
+</tr>
+
+<tr>
+<td>look back on</td>
+<td>Phrasal-Prepositional</td>
+<td>relembrar / recordar</td>
+<td>Zurich</td>
+</tr>
+
+</table>
+</section>
+
+
+<section id="gallery">
+
+<h2 class="title">Gallery</h2>
+
+<p class="intro">
+Explore the places from our route: landmarks, streets, food, beaches and landscapes.
+</p>
+
+<div class="grid">
+
+<div class="photo paris">Paris</div>
+
+<div class="photo rome">Rome</div>
+
+<div class="photo barcelona">Barcelona</div>
+
+<div class="photo zurich">Zurich</div>
+
+</div>
+
+</section>
+
+
+<section id="after">
+
+<h2 class="title">After the Journey</h2>
+
+<p class="quote">
+“Some trips end at the airport. Others stay with us forever.”
+</p>
+
+<p>
+A few days later, the girls were back home, surrounded by their usual routines again.
+But something had changed. They had returned with hundreds of photos, funny stories and memories
+that would probably make them laugh for years.
+</p>
+
+<p>
+They still talked about the missed turns, the unexpected moments, the beautiful places and all
+the little things that happened along the way. What seemed like problems during the trip had become
+some of their favorite memories.
+</p>
+
+<p>
+They realized that traveling was not only about visiting new countries or taking beautiful pictures.
+It was about discovering new places, learning from different experiences and, most importantly,
+sharing those moments with people who make life more special.
+</p>
+
+<p>
+The trip was over, but the memories were just beginning.
+</p>
+
+<div class="card team">
+
+<h3>Our Team</h3>
+
+<p class="names">
+Elizianny • Isabele • Jullyane • Kamille • Natália • Stefany
+</p>
+
+<p>
+Colégio Adventista de Várzea Grande<br>
+English Project • 2026
+</p>
+
+<p>
+<b>NEED HELP ON YOUR NEXT ADVENTURE?</b><br>
+Keep this guide close, plan ahead, stay curious, and don’t be afraid of the unexpected.
+Every journey has its challenges — and every challenge can become a great memory.
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<b>TRAVEL SURVIVAL GUIDE</b><br>
+
+<span class="small">
+6 FRIENDS. 1 TRIP. MANY ADVENTURES.
+</span>
+
+</footer>
+
+</body>
+</html>
